@@ -1,16 +1,13 @@
 """
-# [M4.L1] Carrera de tortugas - Actividad # 6 "Moviendo a las dos"
+# [M4.L1] Carrera de tortugas - Actividad # 8 "Aficionados"
 
-Objetivo: Configurar el avance de nuestras tortugas
-NOTA: Vamos a implementar el movimiento para las TRES (resolvemos el próximo ejercicio tmb)
+Objetivo: Dibujar espectadores para nuestro evento
+NOTA: El ejercicio 7 es resuelto por el código de la actividad #6
 
-Paso Nº 1: Crear variable que contenga la distancia que debe recorrer una tortuga para ganar
-Paso Nº 2: Agregar bucle donde pidamos predicción del resultado al jugador
-Paso Nº 3: Agregamos variables que registren el avance de cada tortuga
-Paso Nº 4: Agregamos otra variable que registrará si una tortuga ya ha cruzado la meta (tenemos_ganadora)
-Paso Nº 5: Agregamos el bucle de la carrera: while(not tenemos_ganadora)
--> incluír random
-Paso Nº 6: Agregamos una condición para mostrar el resultado de la carrera
+Paso Nº 1: Creamos una nueva tortuga para dibujar los espectadores
+Paso Nº 2: La ponemos en posición
+Paso Nº 3: Calculamos un número random de espectadores (por defecto entre 2 y 10)
+Paso Nº 4: Escribimos un bucle for que use dib_espectadores para simular varias tortugas
 """
 import turtle
 import random
@@ -109,6 +106,31 @@ tercera.penup()                        # Levantamos el trazo para reubicarla
 #tercera.goto(-230, 0)
 tercera.goto(x_inicial_tortugas, (y_inicial_tortugas - (distancia_entre_tortugas * (cant_tortugas - 1))))
 tercera.speed(velocidad_corredores)    # Cambiamos su velocidad de animación para la carrera
+
+######################################
+
+"""   ####################
+     # > ESPECTADORES < #
+    ####################    """
+
+dib_espect = turtle.Turtle()   # Creamos una tortuga que dibujará la silueta de los espectadores
+dib_espect.shape("turtle")     # Le damos forma de tortuga (para usar stamp)
+dib_espect.color("purple")     # Seteamos su color -> próximamente random
+# La ubicamos en posición:
+dib_espect.penup()
+dib_espect.speed(0)
+dib_espect.goto(-190, -120)
+dib_espect.seth(90)
+dib_espect.speed(velocidad_corredores)
+
+# Mínimo 2 espectadores - Máx 10
+for i in range(1, random.randint(2,11)):
+    dib_espect.stamp()         # Dejamos huellita/marca de tortuga
+    dib_espect.seth(0)
+    dib_espect.fd(distancia_entre_tortugas/2 + 5)
+    dib_espect.seth(90)
+
+######################################
 
 """   ###############
      # > CARRERA < #
