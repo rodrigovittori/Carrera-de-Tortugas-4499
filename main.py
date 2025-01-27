@@ -1,10 +1,19 @@
 """
-# [M4.L1] Carrera de tortugas - Actividad # 5 "Tercer Jugador"
+# [M4.L1] Carrera de tortugas - Actividad # 6 "Moviendo a las dos"
 
-Objetivo: Agregar nuestra tercer participante
+Objetivo: Configurar el avance de nuestras tortugas
+NOTA: Vamos a implementar el movimiento para las TRES (resolvemos el próximo ejercicio tmb)
+
+Paso Nº 1: Crear variable que contenga la distancia que debe recorrer una tortuga para ganar
+Paso Nº 2: Agregar bucle donde pidamos predicción del resultado al jugador
+Paso Nº 3: Agregamos variables que registren el avance de cada tortuga
+Paso Nº 4: Agregamos otra variable que registrará si una tortuga ya ha cruzado la meta (tenemos_ganadora)
+Paso Nº 5: Agregamos el bucle de la carrera: while(not tenemos_ganadora)
+-> incluír random
+Paso Nº 6: Agregamos una condición para mostrar el resultado de la carrera
 """
-
 import turtle
+import random
 
 """   ##########################
      # > VARIABLES GLOBALES < #
@@ -100,5 +109,88 @@ tercera.penup()                        # Levantamos el trazo para reubicarla
 #tercera.goto(-230, 0)
 tercera.goto(x_inicial_tortugas, (y_inicial_tortugas - (distancia_entre_tortugas * (cant_tortugas - 1))))
 tercera.speed(velocidad_corredores)    # Cambiamos su velocidad de animación para la carrera
+
+"""   ###############
+     # > CARRERA < #
+    ###############    """
+
+distancia_a_la_meta = ((cant_secciones_pista + 1) * ancho_secciones_pista)
+
+##################### >>> PREDICCIÓN DEL USUARIO <<< #####################
+
+opcion_jugador = 0 # Vble global pero la declaramos acá por legibilidad del código
+
+# Si es un num negativo, o un num no-asignado, pedimos de nuevo
+while (opcion_jugador <= 0 or opcion_jugador > cant_tortugas):
+    opcion_jugador = int(input("Cual tortuga cree que ganara? (1/2/3): "))
+
+# Nota: Usaremos la predicción del usuario para mostrar un mensaje
+# Reutilizaremos la tortuga t (que dibujó nuestra pista de carreras)
+t.penup()
+t.goto((x_inicial_tortugas + distancia_a_la_meta /2), (distancia_entre_tortugas * cant_tortugas) )
+t.write( ("Apostaste por la tortuga #" + str(opcion_jugador)), align = 'center')
+t.hideturtle() # Escondemos nuestra tortuga por cuestiones estéticas
+
+##########################################################################
+
+tenemos_ganadora = False # Vble de control que detendrá el bucle de la carrera cuando haya una ganadora
+tortuga_ganadora = 0     # Vable que contiene la id de nuestra ganadora
+
+paso_tortuga = 0         # Variable que randomizamos para cada tortuga en cada ronda de "avances"
+
+# agregamos variables acumuladoras que registren la distancia total recorrida por cada tortuga
+distancia_recorrida_tortuga_1 = 0
+distancia_recorrida_tortuga_2 = 0
+distancia_recorrida_tortuga_3 = 0
+
+# activamos el trazo de nuestras tortugas (opcional)
+primera.pendown()
+segunda.pendown()
+tercera.pendown()
+
+######################### >>> BUCLE PRINCIPAL <<< ########################
+while (not tenemos_ganadora):
+
+    # Verificamos si ALGUNA tortuga ya cruzó la meta:
+    if (distancia_recorrida_tortuga_1 > distancia_a_la_meta):
+        # Si la primera tortuga pasó la línea de meta:
+        tortuga_ganadora = 1
+        tenemos_ganadora = True
+
+    elif (distancia_recorrida_tortuga_2 > distancia_a_la_meta):
+        # Si la segunda tortuga pasó la línea de meta:
+        tortuga_ganadora = 2
+        tenemos_ganadora = True
+
+    elif (distancia_recorrida_tortuga_3 > distancia_a_la_meta):
+        # Si la tercera tortuga pasó la línea de meta:
+        tortuga_ganadora = 3
+        tenemos_ganadora = True
+
+    else: # NO HAY GANADORA -> LA CARRERA CONTINÚA
+
+        paso_tortuga = random.randint(1, velocidad_corredores) # Cant de px que avanzará la tortuga esta ronda
+        primera.fd(paso_tortuga)                               # Avanza en la pista
+        distancia_recorrida_tortuga_1 += paso_tortuga          # registro la distancia recorrida
+
+        paso_tortuga = random.randint(1, velocidad_corredores) # Cant de px que avanzará la tortuga esta ronda
+        segunda.fd(paso_tortuga)                               # Avanza en la pista
+        distancia_recorrida_tortuga_2 += paso_tortuga          # registro la distancia recorrida
+
+        paso_tortuga = random.randint(1, velocidad_corredores) # Cant de px que avanzará la tortuga esta ronda
+        tercera.fd(paso_tortuga)                               # Avanza en la pista
+        distancia_recorrida_tortuga_3 += paso_tortuga          # registro la distancia recorrida
+        
+##########################################################################
+
+# > Si estás aquí, la carrera terminó :D
+
+# MOSTRAR TORTUGA GANADORA:
+t.penup()
+t.goto(x_inicial_tortugas + 100, -80)
+win_text = "¡La tortuga #" + str(tortuga_ganadora) + " ha ganado!"
+t.write(win_text)
+
+# To-do: agregar condición que compare nuestra predicción con el resultado
 
 # Colorín colorado el código ha terminado :D
