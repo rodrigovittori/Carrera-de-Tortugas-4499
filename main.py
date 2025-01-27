@@ -3,8 +3,10 @@
 
 # Objetivo: Crear una tortuga y programar el dibujo de la pista de carreras
 
-Paso 1: Agregamos variables globales (velocidad_corredores, cant_tortugas, distancia_entre_tortugas, x e y iniciales)
-Paso 2: Creamos nuestras tortugas y las colocamos en el punto de partida
+Parche: ¿¡ El profe se equivocó copiando y pegando código ?! Sipi
+
+> Cambiamos el nombre de la segunda tortuga de "primera" a "segunda"
+> Revisamos su posición inicial
 """
 
 import turtle
@@ -77,20 +79,18 @@ primera.speed(velocidad_corredores)    # Cambiamos su velocidad de animación pa
 ########################################
 
 # SEGUNDA
-primera = turtle.Turtle()              # Creamos una nueva tortuga
+segunda = turtle.Turtle()              # Creamos una nueva tortuga
 cant_tortugas += 1                     # La registramos como corredora
-primera.shape("turtle")                # Le damos forma de tortuga
-primera.color("navy")                  # Le asignamos otro color (AZUL)
-primera.speed(0)                       # Aceleramos su animación
-primera.penup()                        # Levantamos el trazo para reubicarla
+segunda.shape("turtle")                # Le damos forma de tortuga
+segunda.color("navy")                  # Le asignamos otro color (AZUL)
+segunda.speed(0)                       # Aceleramos su animación
+segunda.penup()                        # Levantamos el trazo para reubicarla
 
 # La posicionamos DETRÁS de la línea de partida
-#primera.goto(-230, 80)
-primera.goto(x_inicial_tortugas, (y_inicial_tortugas - (distancia_entre_tortugas * (cant_tortugas - 1))))
-primera.speed(velocidad_corredores)    # Cambiamos su velocidad de animación para la carrera
+#segunda.goto(-230, 40)
+segunda.goto(x_inicial_tortugas, (y_inicial_tortugas - (distancia_entre_tortugas * (cant_tortugas - 1))))
+segunda.speed(velocidad_corredores)    # Cambiamos su velocidad de animación para la carrera
 
 ########################################
-
-# SPOILER: Sabemos que habrá una tercera tortuga
 
 # Colorín colorado el código ha terminado :D
