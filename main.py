@@ -1,12 +1,7 @@
 """
-# [M4.L1] Carrera de tortugas - Actividad # 4 "Dos Jugadores"
+# [M4.L1] Carrera de tortugas - Actividad # 5 "Tercer Jugador"
 
-# Objetivo: Crear una tortuga y programar el dibujo de la pista de carreras
-
-Parche: ¿¡ El profe se equivocó copiando y pegando código ?! Sipi
-
-> Cambiamos el nombre de la segunda tortuga de "primera" a "segunda"
-> Revisamos su posición inicial
+Objetivo: Agregar nuestra tercer participante
 """
 
 import turtle
@@ -92,5 +87,18 @@ segunda.goto(x_inicial_tortugas, (y_inicial_tortugas - (distancia_entre_tortugas
 segunda.speed(velocidad_corredores)    # Cambiamos su velocidad de animación para la carrera
 
 ########################################
+
+# TERCERA
+tercera = turtle.Turtle()              # Creamos una nueva tortuga
+cant_tortugas += 1                     # La registramos como corredora
+tercera.shape("turtle")                # Le damos forma de tortuga
+tercera.color("gold")                  # Le asignamos otro color (AMARILLA)
+tercera.speed(0)                       # Aceleramos su animación
+tercera.penup()                        # Levantamos el trazo para reubicarla
+
+# La posicionamos DETRÁS de la línea de partida
+#tercera.goto(-230, 0)
+tercera.goto(x_inicial_tortugas, (y_inicial_tortugas - (distancia_entre_tortugas * (cant_tortugas - 1))))
+tercera.speed(velocidad_corredores)    # Cambiamos su velocidad de animación para la carrera
 
 # Colorín colorado el código ha terminado :D
